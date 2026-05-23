@@ -31,9 +31,12 @@ body{
     border-radius:30px;
     padding:25px;
     backdrop-filter:blur(20px);
-    height:95vh;
+    height:calc(100vh - 40px);
     position:sticky;
     top:20px;
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
 }
 
 .logo{
@@ -53,6 +56,7 @@ nav{
     display:flex;
     flex-direction:column;
     gap:12px;
+    flex-shrink:0;
 }
 
 nav a{
@@ -74,7 +78,8 @@ nav a:hover{
 }
 
 .spaces-menu{
-    margin-top:40px;
+    margin-top:28px;
+    min-height:0;
 }
 
 .spaces-header{
@@ -464,13 +469,11 @@ nav a:hover{
 }
 
 .user-box{
-    position:absolute;
-    left:25px;
-    right:25px;
-    bottom:25px;
+    margin-top:auto;
     background:rgba(255,255,255,0.05);
     border-radius:22px;
     padding:18px;
+    flex-shrink:0;
 }
 
 .user-box p{
