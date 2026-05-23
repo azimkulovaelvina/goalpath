@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalPath</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+<section class="login-screen" id="loginScreen">
+    <div class="login-card">
+        <h1>🎯 GoalPath</h1>
+        <p>Войди или зарегистрируйся, чтобы отслеживать личный прогресс</p>
+
+        <input type="text" id="usernameInput" placeholder="Введите имя пользователя">
+        <input type="password" id="passwordInput" placeholder="Введите пароль">
+
+        <button id="loginBtn">Войти</button>
+        <button id="registerBtn" class="secondary-btn">Зарегистрироваться</button>
+    </div>
+</section><div class="app hidden" id="app">
+
+    <aside class="sidebar">
+        <div class="logo">🎯 GoalPath</div>
+        <p class="logo-sub">Достигай целей через привычки</p>
+
+        <nav>
+            <a class="nav-link active" data-page="home">Главная</a>
+            <a class="nav-link" data-page="stats">Статистика</a>
+            <a class="nav-link" data-page="notifications">Уведомления</a>
+            <a class="nav-link" data-page="timer">Таймер</a>
+            <a class="nav-link" data-page="settings">Настройки</a>
+        </nav>
+
+        <div class="spaces-menu">
+            <div class="spaces-header">
+                <span>Мои спейсы</span>
+                <button id="openModal">+</button>
+            </div>
+
+            <div id="spacesList"></div>
+        </div>
+
+        <div class="user-box">
+            <strong id="sidebarUser">Пользователь</strong>
+            <p>аккаунт активен</p>
+            <button id="logoutBtn">Выйти</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- ГЛАВНАЯ -->
+        <section class="page" id="homePage">
+            <div class="top">
+                <div>
+                    <h1 id="helloText">Привет 👋</h1>
+                    <p>Создавай спейсы, добавляй привычки и отмечай прогресс</p>
+                </div>
+
+                <button class="create-btn" id="createSpaceBtn">+ Создать спейс</button>
+            </div>
+
+            <h2 class="section-title">Твои спейсы</h2>
+            <div class="cards" id="cardsContainer"></div>
+
+            <div class="empty-box hidden" id="emptyBox">
+                <h2>Пока нет спейсов</h2>
+                <p>Создай первую папку, например “Похудение” или “Учеба”.</p>
+                <button id="emptyCreateBtn">Создать первый спейс</button>
+            </div>
+
+            <div class="habits-section hidden" id="habitsSection">
+                <div class="habits-top">
+                    <div>
+                        <h2 id="spaceTitle">Название спейса</h2>
+                        <p id="spaceDescription">Описание спейса</p>
+                    </div>
+
+                    <button class="add-habit-btn" id="addHabitBtn">+ Добавить привычку</button>
+                </div>
+
+                <div class="calendar-toolbar">
+                    <button id="prevWeekBtn" aria-label="Предыдущая неделя">‹</button>
+                    <strong id="currentWeekText">Текущая неделя</strong>
+                    <button id="todayWeekBtn">Сегодня</button>
+                    <button id="nextWeekBtn" aria-label="Следующая неделя">›</button>
+                </div>
+
+                <div class="week-labels" id="weekLabels">
+                    <span>Пн</span>
+                    <span>Вт</span>
+                    <span>Ср</span>
+                    <span>Чт</span>
+                    <span>Пт</span>
+                    <span>Сб</span>
+                    <span>Вс</span>
+                    <span></span>
+                </div>
+
+                <div id="habitsContainer"></div>
+            </div>
+        </section>
+
+        <section class="page hidden" id="statsPage">
+
+    <div class="top">
+        <div>
+            <h1>Статистика</h1>
+            <p>Анализ выполнения привычек по выбранному спейсу</p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="widget">
+            <h3>Прогресс за неделю</h3>
+            <canvas id="weekChart"></canvas>
+        </div>
+
+        <div class="widget streak">
+            <h3>Лучшая серия</h3>
+            <h1 id="streakText">0 дней</h1>
+            <p>Количество дней подряд с выполненными привычками</p>
+        </div>
+
+    </div>
+
+</section>
+        <!-- УВЕДОМЛЕНИЯ -->
+        <section class="page hidden" id="notificationsPage">
+            <div class="top">
+                <div>
+                    <h1>Уведомления</h1>
+                    <p>Напоминания помогают не забывать отмечать привычки</p>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2>Напоминание GoalPath</h2>
+                <p>После включения браузер будет показывать уведомление, пока сайт открыт.</p>
+                <button id="enableNotificationsBtn">Включить уведомления</button>
+                <button id="testNotificationBtn">Проверить уведомление</button>
+                <p id="notificationStatus">Статус: не включено</p>
+            </div>
+        </section>
+
+        <!-- ТАЙМЕР -->
+        <section class="page hidden" id="timerPage">
+            <div class="top">
+                <div>
+                    <h1>Таймер</h1>
+                    <p>Можно использовать для привычек: учеба, тренировка, чтение</p>
+                </div>
+            </div>
+
+            <div class="timer-card">
+                <div class="timer-options" id="timerOptions" aria-label="Длительность таймера">
+                    <button class="timer-option" data-minutes="5">5 мин</button>
+                    <button class="timer-option" data-minutes="10">10 мин</button>
+                    <button class="timer-option active" data-minutes="25">25 мин</button>
+                    <button class="timer-option" data-minutes="50">50 мин</button>
+                </div>
+                <h2 id="timerDisplay">25:00</h2>
+                <p class="timer-status" id="timerStatus">Выберите длительность и нажмите старт</p>
+                <button id="startTimerBtn">Старт</button>
+                <button id="pauseTimerBtn">Пауза</button>
+                <button id="resetTimerBtn">Сброс</button>
+            </div>
+        </section>
+
+        <!-- НАСТРОЙКИ -->
+        <section class="page hidden" id="settingsPage">
+            <div class="top">
+                <div>
+                    <h1>Настройки</h1>
+                    <p>Управление аккаунтом и данными пользователя</p>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2>Аккаунт</h2>
+                <p>Текущий пользователь: <strong id="settingsUser"></strong></p>
+                <button id="clearDataBtn">Очистить мои данные</button>
+                <button id="settingsLogoutBtn">Выйти из аккаунта</button>
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
