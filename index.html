@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalPath</title>
 
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -22,6 +22,11 @@
         <button id="registerBtn" class="secondary-btn">Зарегистрироваться</button>
     </div>
 </section><div class="app hidden" id="app">
+
+    <div class="top-account">
+        <span id="sidebarUser">Пользователь</span>
+        <button id="logoutBtn">Выйти</button>
+    </div>
 
     <aside class="sidebar">
         <div class="logo">🎯 GoalPath</div>
@@ -42,12 +47,6 @@
             </div>
 
             <div id="spacesList"></div>
-        </div>
-
-        <div class="user-box">
-            <strong id="sidebarUser">Пользователь</strong>
-            <p>аккаунт активен</p>
-            <button id="logoutBtn">Выйти</button>
         </div>
     </aside>
 

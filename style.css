@@ -22,6 +22,41 @@ body{
     padding:25px;
 }
 
+.top-account{
+    position:fixed;
+    top:22px;
+    right:28px;
+    z-index:900;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:rgba(15,15,15,0.9);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:10px 12px 10px 16px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 14px 35px rgba(0,0,0,0.28);
+}
+
+.top-account span{
+    max-width:170px;
+    color:#d8d8d8;
+    font-size:14px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.top-account button{
+    border:none;
+    background:linear-gradient(90deg,#ff4da6,#8b3dff);
+    color:white;
+    padding:10px 16px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:700;
+}
+
 /* SIDEBAR */
 
 .sidebar{
@@ -465,30 +500,6 @@ nav a:hover{
     padding:16px;
     border-radius:18px;
     font-weight:700;
-    cursor:pointer;
-}
-
-.user-box{
-    margin-top:auto;
-    background:rgba(255,255,255,0.05);
-    border-radius:22px;
-    padding:18px;
-    flex-shrink:0;
-}
-
-.user-box p{
-    color:#aaa;
-    font-size:13px;
-    margin:5px 0 12px;
-}
-
-.user-box button{
-    width:100%;
-    border:none;
-    background:rgba(255,255,255,0.08);
-    color:white;
-    padding:12px;
-    border-radius:15px;
     cursor:pointer;
 }
 
