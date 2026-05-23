@@ -23,11 +23,9 @@ const app = document.getElementById("app");
 
 const usernameInput = document.getElementById("usernameInput");
 const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
 const settingsLogoutBtn = document.getElementById("settingsLogoutBtn");
 
 const helloText = document.getElementById("helloText");
-const sidebarUser = document.getElementById("sidebarUser");
 const settingsUser = document.getElementById("settingsUser");
 
 const createSpaceBtn = document.getElementById("createSpaceBtn");
@@ -284,7 +282,6 @@ function logout() {
     app.classList.remove("hidden");
 
     helloText.innerText = "Привет, " + currentUser + " 👋";
-    sidebarUser.innerText = currentUser;
     settingsUser.innerText = currentUser;
 
     renderAll();
@@ -886,7 +883,6 @@ function clearUserData() {
 
 loginBtn.addEventListener("click", login);
 registerBtn.addEventListener("click", register);
-logoutBtn.addEventListener("click", logout);
 settingsLogoutBtn.addEventListener("click", logout);
 
 createSpaceBtn.addEventListener("click", createSpace);
